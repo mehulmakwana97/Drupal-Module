@@ -1,0 +1,4 @@
+node_csv_uploader.admin:
+  title: 'Node CSVs'
+  route_name: node_csv_uploader.admin
+  base_route: system.admin_content

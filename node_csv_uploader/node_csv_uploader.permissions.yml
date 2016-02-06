@@ -1,0 +1,8 @@
+manage node csv uploader:
+  title: 'Manage Node CSV Uploader Form'
+  description: 'Upload csv files for node types.'
+  restrict access: TRUE
+
+use node csv uploader:
+  title: 'Use Node CSV Uploader Form'
+  description: 'Get an overview of uploaded files.'

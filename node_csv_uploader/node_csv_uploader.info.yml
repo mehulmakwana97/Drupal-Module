@@ -1,0 +1,11 @@
+name: Node CSV Uploader
+type: module
+description: Upload CSV for node based on content type
+package: CSV Upload
+# version: VERSION
+# core: 8.x
+
+version: '8.0.0'
+core: '8.x'
+project: drupal
+datestamp: 1454389782

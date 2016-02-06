@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * Node csv uploader hook implementations.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+
+function node_csv_uploader_help($route_name, RouteMatchInterface $route_match) {
+  switch($route_name) {
+    case 'node_csv_uploader.admin':
+      return '<p>'. t('Upload one or more csv for pulling content into Drupal.') .'</p>';
+  }
+}

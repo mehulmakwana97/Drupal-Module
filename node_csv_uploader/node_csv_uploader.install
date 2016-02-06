@@ -1,0 +1,25 @@
+<?php
+
+function node_csv_uploader_schema() {
+  $schema['node_csv_uploader'] = array(
+    'fields' => array(
+      'id' => array(
+        'type' => 'serial',
+        'not null' => TRUE
+        ),
+      'fid' => array(
+        'type' => 'int',
+        'length' => 10,
+        'not null' => TRUE
+        ),
+      'content_type' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE
+        )
+      ),
+    'primary key' => array('id'),
+    'foreign key' => array('id'),
+    );
+  return $schema;
+}

@@ -1,9 +1,9 @@
 <?php
 
-  /**
-   * @file
-   * Drupal\node_csv_uploader\GoogleMaps.
-   */
+/**
+ * @file
+ * Drupal\node_csv_uploader\GoogleMaps.
+ */
 
 namespace Drupal\node_csv_uploader;
 

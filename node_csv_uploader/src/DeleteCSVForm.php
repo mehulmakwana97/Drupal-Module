@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * Contains \Drupal\node_csv_uploader\DeleteCSVForm.
+ */
+
 namespace Drupal\node_csv_uploader;
 
 use Drupal\Core\Form\ConfirmFormBase;

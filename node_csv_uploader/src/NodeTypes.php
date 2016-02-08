@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * Contains \Drupal\node_csv_uploader\NodeTypes.
+ */
+
 namespace Drupal\node_csv_uploader;
 
 use Drupal\node\Entity\NodeType;

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Contains \Drupal\node_csv_uploader\CSVFileReader.

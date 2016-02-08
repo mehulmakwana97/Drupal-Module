@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * Contains \Drupal\node_csv_uploader\ManageStorage.
+ */
+
 namespace Drupal\node_csv_uploader;
 
 class ManageStorage {

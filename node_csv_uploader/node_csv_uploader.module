@@ -6,14 +6,33 @@
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
-
+use Drupal\Core\Url;
 /**
  * Implements hook_help().
  */
 
 function node_csv_uploader_help($route_name, RouteMatchInterface $route_match) {
   switch($route_name) {
+    case 'help.page.node_csv_uploader':
+      $output = '<h3>'. t('About') .'</h3>';
+      $output .= '<p>'. t('The node csv uploader allows users to upload stocklist data from csv file.') .'</p>';
+      $output .= '<h3>'. t('Requirements') .'</h3>';
+      $output .= '<ul>';
+        $output .= '<li>'. t('Create new content type <strong>"Stocklists"</strong>, then it generates machine name: <strong>"stocklists"</strong> ') .'</li>';
+        $output .= '<li>'. t('Required fields:') .'</li>';
+          $output .= '<ul>';
+            $output .= '<li>'. t('Title') .'</li>';
+            $output .= '<li>'. t('Address') .'</li>';
+            $output .= '<li>'. t('Latitude') .'</li>';
+            $output .= '<li>'. t('Longitude') .'</li>';
+            $output .= '<li>'. t('Country') .'</li>';
+          $output .= '</ul>';
+      $output .= '</ul>';
+      $output .= '<h3>'. t('Download sample file') .'</h3>';
+      $output .= '<p>'. \Drupal::l(t('Sample file'), Url::fromRoute('node_csv_uploader.sample_file', [])).'</p>';
+      return $output;
     case 'node_csv_uploader.admin':
       return '<p>'. t('Upload one or more csv for pulling content into Drupal.') .'</p>';
+
   }
 }

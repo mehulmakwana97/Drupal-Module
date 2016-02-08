@@ -1,4 +1,4 @@
 node_csv_uploader.admin:
-  title: 'Node CSVs'
+  title: 'Import stocklist'
   route_name: node_csv_uploader.admin
   parent: system.admin_structure

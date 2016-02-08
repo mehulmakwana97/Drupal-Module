@@ -1,9 +1,15 @@
 <?php
 
+/**
+ * @file
+ * Contains \Drupal\node_csv_uploader\UploadCSVForm.
+ */
+
 namespace Drupal\node_csv_uploader;
 
 use Drupal\Core\Form\FormInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
 
 use Drupal\Component\Uuid\UuidInterface;
 use Drupal\file\FileUsage\FileUsageInterface;
@@ -37,7 +43,7 @@ class UploadCSVForm implements FormInterface {
     $form['file_name'] = array(
       '#type' => 'managed_file',
       '#title' => t('Choose File'),
-      '#description' => t('Upload a file, allowed extensions: '. $this->configuration['allowed_extensions']),
+      '#description' => t('Upload a file, allowed extensions: '. $this->configuration['allowed_extensions'] . '<br>Download '. \Drupal::l(t('sample file'), Url::fromRoute('node_csv_uploader.sample_file', []))),
       '#upload_validators' => [
         'file_validate_extensions' => [
           $this->configuration['allowed_extensions'],
@@ -93,20 +99,27 @@ class UploadCSVForm implements FormInterface {
       $address = isset($value['address']) ? $value['address'] : '';
       if(!empty($title) AND !empty($address)) {
         $valid_csv = true;
-        $google_map = new GoogleMaps();
-        $map_results = $google_map->setAddress($title .', '. $address)->get();
+        $latitude = isset($value['latitude']) ? $value['latitude'] : 0;
+        $longitude = isset($value['longitude']) ? $value['longitude'] : 0;
+        if(empty($latitude) AND empty($longitude)) {
+          $google_map = new GoogleMaps();
+          $map_results = $google_map->setAddress($title .', '. $address)->get();
+
+          $latitude = $map_results->getLatitude() != NULL ? $map_results->getLatitude() : 0;
+          $longitude = $map_results->getLongitude() != NULL ? $map_results->getLongitude() : 0;
+        }
 
         $node = Node::create(array(
-            'type' => 'stocklists',
+            'type' => $this->content_type,
             'title' => $title,
             'langcode' => 'en',
             'uid' => $current_user->id(),
             'status' => 1,
             'field_latitude' => array(
-              'value' => $map_results->getLatitude() != NULL ? $map_results->getLatitude() : 0,
+              'value' => $latitude,
             ),
             'field_longitude' => array(
-              'value' => $map_results->getLongitude() != NULL ? $map_results->getLongitude() : 0,
+              'value' => $longitude,
             ),
             'field_country' => array(
               'value' => isset($value['country']) ? $value['country'] : '',
@@ -149,6 +162,9 @@ class UploadCSVForm implements FormInterface {
   }
 
   public function getFileUri($fid) {
-    return file_load($fid)->uri->getValue();
+    $file = file_load($fid);
+    $file->status = FILE_STATUS_PERMANENT;
+    $file->save();
+    return $file->uri->getValue();
   }
 }

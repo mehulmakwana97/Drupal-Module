@@ -1,10 +1,10 @@
 node_csv_uploader.admin:
-  title: 'Node CSVs'
+  title: 'Import stocklist'
   route_name: node_csv_uploader.admin
   base_route: system.admin_content
 
 node_csv_uploader.add:
-  title: 'Add Node CSVs'
+  title: 'Upload stocklist csv'
   route_name: node_csv_uploader.add
   appears_on:
     - node_csv_uploader.admin

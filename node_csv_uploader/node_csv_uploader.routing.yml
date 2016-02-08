@@ -21,3 +21,10 @@ node_csv_uploader.delete:
     _form: '\Drupal\node_csv_uploader\DeleteCSVForm'
   requirements:
     _permission: 'manage node csv uploader'
+
+node_csv_uploader.sample_file:
+  path: '/admin/content/upload_node_csv/download_sample'
+  defaults:
+    _controller: '\Drupal\node_csv_uploader\Controller\UploadedFileListController::generateSample'
+  requirements:
+    _permission: 'manage node csv uploader'
